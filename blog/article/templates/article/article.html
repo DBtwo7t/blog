@@ -1,13 +1,5 @@
-<!doctype html>
-{% load static %}
-<html>
-<head>
-<title>部落格</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
-</head>
-<body>
-{% include 'main/menu.html' %}
-<h2>部落格說 -- Hello world!</h2> 
-</body>
-</html>
+{% extends 'main/base.html' %}
+{% block heading %}歡迎蒞臨{% endblock %}
+{% block content %}
+
+{% endblock %}

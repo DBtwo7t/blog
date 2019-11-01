@@ -1,14 +1,5 @@
-<!doctype html>
-{% load static %}
-<html>
-<head>
-<title>部落格</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
-</head>
-<body>
-{% include 'main/menu.html' %}
-<h2>Django 說 -- Hello world!</h2>
-<p>{{ like }}</p>
-</body>
-</html>
+{% extends 'main/base.html' %}
+{% block heading %}首頁{% endblock %}
+{% block content %}
+<p>Django 很棒</p>
+{% endblock %}
