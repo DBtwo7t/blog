@@ -1,5 +1,22 @@
 {% extends 'main/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'article/css/article.css' %}">
+{% endblock %}
 {% block heading %}歡迎蒞臨{% endblock %}
 {% block content %}
-
+<br>
+{% for article, comments in articles.items %}
+  <h3>{{ article.title }}</h3>
+  <p>發表時間：{{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
+  <div class="articleContent">{{ article.content|linebreaks|truncatechars_html:30 }}</div>
+  {% for comment in comments %}
+    <div class="commentDiv">
+      <span class="comment">{{ comment.content }}</span>
+      <br>
+      <span class="commentTime">{{ comment.pubDateTime|date:'m月d日 H:i' }}</span>
+    </div>
+  {% endfor %}
+  <hr>
+{% endfor %}
 {% endblock %}
