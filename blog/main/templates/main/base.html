@@ -4,12 +4,18 @@
 <head>
 <title>部落格</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<link rel="stylesheet" href="/static/main/css/main.css">
 {% block css %}{% endblock %}
+</head>
 </head>
 <body>
 {% include 'main/menu.html' %}
 <h2>部落格 -- {% block heading %}{% endblock %}</h2>
+{% for message in messages %}
+  <p class="{{ message.tags }}">{{ message }}</p>
+{% endfor %}
 {% block content %}{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/x.x.x/jquery.min.js"></script>
+{% block script %}{% endblock %}
 </body>
 </html>

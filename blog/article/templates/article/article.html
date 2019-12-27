@@ -5,9 +5,15 @@
 {% endblock %}
 {% block heading %}歡迎蒞臨{% endblock %}
 {% block content %}
-<br>
+{% include 'article/searchForm.html' %}
+<p class="inlineBlock"><a class="btn" href="{% url 'article:articleCreate' %}">新增文章</a></p>
+<br><br><hr>
 {% for article, comments in articles.items %}
-  <h3>{{ article.title }}</h3>
+ <h3 class="inlineBlock"><a href="{% url 'article:articleRead' article.id %}">{{ article.title }}</a></h3>
+  <form class="inlineBlock" method="post" action="{% url 'article:articleDelete' article.id %}">
+    {% csrf_token %}
+    <input class="btn deleteConfirm" type="submit" value="刪除">
+  </form>
   <p>發表時間：{{ article.pubDateTime|date:'Y-m-d H:i' }}</p>
   <div class="articleContent">{{ article.content|linebreaks|truncatechars_html:30 }}</div>
   {% for comment in comments %}
@@ -19,4 +25,7 @@
   {% endfor %}
   <hr>
 {% endfor %}
+{% endblock %}
+{% block script %}
+<script src="{% static 'main/js/deleteConfirm.js' %}"></script>
 {% endblock %}
